@@ -3,8 +3,25 @@ import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 
 const ContactSection = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert("Заявка отправлена! Мы свяжемся с вами в ближайшее время.");
+  };
+
+  const openSocialMedia = (platform: string) => {
+    const urls = {
+      instagram: "https://instagram.com",
+      telegram: "https://t.me/basketballschool",
+      youtube: "https://youtube.com",
+    };
+    window.open(urls[platform as keyof typeof urls], "_blank");
+  };
+
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-600 to-orange-500 text-white">
+    <section
+      id="contact"
+      className="py-20 bg-gradient-to-br from-blue-600 to-orange-500 text-white"
+    >
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
@@ -26,39 +43,51 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div>
-                <input
-                  type="text"
-                  placeholder="Ваше имя"
-                  className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-300"
-                />
-              </div>
-              <div>
-                <input
-                  type="tel"
-                  placeholder="Телефон"
-                  className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-300"
-                />
-              </div>
-              <div>
-                <select className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-orange-300">
-                  <option value="">Выберите программу</option>
-                  <option value="mini">Мини-баскет (6-10 лет)</option>
-                  <option value="junior">Юниоры (11-15 лет)</option>
-                  <option value="pro">Профи (16+ лет)</option>
-                </select>
-              </div>
-              <div>
-                <textarea
-                  placeholder="Дополнительная информация"
-                  rows={3}
-                  className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-300 resize-none"
-                ></textarea>
-              </div>
-              <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 text-lg">
-                <Icon name="Send" size={20} className="mr-2" />
-                Отправить заявку
-              </Button>
+              <form onSubmit={handleSubmit}>
+                <div className="space-y-4">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Ваше имя"
+                      required
+                      className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-300"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="tel"
+                      placeholder="Телефон"
+                      required
+                      className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-300"
+                    />
+                  </div>
+                  <div>
+                    <select
+                      required
+                      className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-orange-300"
+                    >
+                      <option value="">Выберите программу</option>
+                      <option value="mini">Мини-баскет (6-10 лет)</option>
+                      <option value="junior">Юниоры (11-15 лет)</option>
+                      <option value="pro">Профи (16+ лет)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <textarea
+                      placeholder="Дополнительная информация"
+                      rows={3}
+                      className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-300 resize-none"
+                    ></textarea>
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 text-lg"
+                  >
+                    <Icon name="Send" size={20} className="mr-2" />
+                    Отправить заявку
+                  </Button>
+                </div>
+              </form>
             </CardContent>
           </Card>
 
@@ -117,6 +146,7 @@ const ContactSection = () => {
                   variant="outline"
                   size="icon"
                   className="border-white/30 text-white hover:bg-white/20"
+                  onClick={() => openSocialMedia("instagram")}
                 >
                   <Icon name="Instagram" size={20} />
                 </Button>
@@ -124,6 +154,7 @@ const ContactSection = () => {
                   variant="outline"
                   size="icon"
                   className="border-white/30 text-white hover:bg-white/20"
+                  onClick={() => openSocialMedia("telegram")}
                 >
                   <Icon name="MessageCircle" size={20} />
                 </Button>
@@ -131,6 +162,7 @@ const ContactSection = () => {
                   variant="outline"
                   size="icon"
                   className="border-white/30 text-white hover:bg-white/20"
+                  onClick={() => openSocialMedia("youtube")}
                 >
                   <Icon name="Youtube" size={20} />
                 </Button>

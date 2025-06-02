@@ -2,6 +2,16 @@ import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 
 const HeroSection = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const openRegistrationModal = () => {
+    const contactSection = document.getElementById("contact");
+    contactSection?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-orange-500 to-blue-600 text-white overflow-hidden">
       {/* Background pattern */}
@@ -28,6 +38,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg"
+              onClick={openRegistrationModal}
             >
               <Icon name="Play" size={20} />
               Записаться на пробное занятие
@@ -36,6 +47,7 @@ const HeroSection = () => {
               variant="outline"
               size="lg"
               className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg"
+              onClick={() => scrollToSection("programs")}
             >
               <Icon name="Phone" size={20} />
               Узнать подробнее

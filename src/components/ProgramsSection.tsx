@@ -9,6 +9,11 @@ import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 
 const ProgramsSection = () => {
+  const openRegistrationModal = () => {
+    const contactSection = document.getElementById("contact");
+    contactSection?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const programs = [
     {
       title: "Мини-баскет",
@@ -119,7 +124,10 @@ const ProgramsSection = () => {
                       {program.price}
                     </span>
                   </div>
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                  <Button
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                    onClick={openRegistrationModal}
+                  >
                     Записаться
                   </Button>
                 </div>
